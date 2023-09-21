@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  gui:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - DISPLAY=unix$DISPLAY
+      - ELECTRON_DISABLE_SANDBOX=1
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - ".:/home/hung/app"
+      - "/home/hung/app/node_modules"
+    devices:
+      - /dev/snd
+    command: ["npm", "start"]
+
+  
